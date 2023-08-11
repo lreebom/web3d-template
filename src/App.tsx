@@ -1,4 +1,7 @@
+import React from "react";
 import {FC, useEffect} from "react";
+
+import ThreeEngine from "./ThreeEngine";
 
 const App: FC = () => {
 
@@ -11,8 +14,9 @@ const App: FC = () => {
 
     }, []);
 
-    return (<div>
-        App
+    return (<div className={"app"}>
+        <ThreeEngine/>
+        <div className={"app-ui"}>App</div>
     </div>);
 };
 

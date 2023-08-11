@@ -3,6 +3,8 @@ const common = require('./webpack.config.js');
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const BuildConfig = require("./build-config/build-config");
+const CopyPlugin = require("copy-webpack-plugin");
+const path = require("path");
 
 module.exports = merge(common, {
     mode: 'development',
@@ -22,12 +24,17 @@ module.exports = merge(common, {
             title: BuildConfig.title,
             filename: "index.html",
             template: BuildConfig.htmlTemplate,
-            inject: "body",
+            inject: "head",
             scriptLoading: "defer",
             // favicon: path.join(appBuildInfo.appInfo.path, "src/favicon.ico"),
         }),
         new MiniCssExtractPlugin({
             filename: '[name].bundle.css',
+        }),
+        new CopyPlugin({
+            patterns: [
+                {from: path.join(__dirname, "node_modules/three/examples/jsm/libs/draco"), to: "libs/draco"},
+            ],
         }),
     ],
     module: {
@@ -41,7 +48,7 @@ module.exports = merge(common, {
                 },
             },
             {
-                test: /\.(svg|png|jpg|gif)$/i,
+                test: /\.(svg|png|jpg|gif|hdr|exr)$/i,
                 exclude: /node_modules/,
                 type: 'asset',
                 generator: {
@@ -72,11 +79,6 @@ module.exports = merge(common, {
                     filename: 'models/[name][ext]',
                 },
             },
-            {
-                test: /\.(glsl)$/i,
-                exclude: /node_modules/,
-                type: 'asset/source'
-            }
         ]
     },
     devtool: 'inline-source-map',

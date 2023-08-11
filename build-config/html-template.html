@@ -31,7 +31,7 @@
             touch-action: none;
         }
 
-        #app-root {
+        #app-container {
             position: absolute;
             left: 0;
             top: 0;
@@ -53,6 +53,71 @@
             align-items: center;
             background-image: linear-gradient(to top, #f3e7e9 0%, #e3eeff 99%, #e3eeff 100%);
         }
+
+        .lds-ellipsis {
+            display: inline-block;
+            position: relative;
+            width: 80px;
+            height: 80px;
+        }
+
+        .lds-ellipsis div {
+            position: absolute;
+            top: 33px;
+            width: 13px;
+            height: 13px;
+            border-radius: 50%;
+            background: #8bd929;
+            animation-timing-function: cubic-bezier(0, 1, 1, 0);
+        }
+
+        .lds-ellipsis div:nth-child(1) {
+            left: 8px;
+            animation: lds-ellipsis1 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(2) {
+            left: 8px;
+            animation: lds-ellipsis2 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(3) {
+            left: 32px;
+            animation: lds-ellipsis2 0.6s infinite;
+        }
+
+        .lds-ellipsis div:nth-child(4) {
+            left: 56px;
+            animation: lds-ellipsis3 0.6s infinite;
+        }
+
+        @keyframes lds-ellipsis1 {
+            0% {
+                transform: scale(0);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @keyframes lds-ellipsis3 {
+            0% {
+                transform: scale(1);
+            }
+            100% {
+                transform: scale(0);
+            }
+        }
+
+        @keyframes lds-ellipsis2 {
+            0% {
+                transform: translate(0, 0);
+            }
+            100% {
+                transform: translate(24px, 0);
+            }
+        }
+
     </style>
     <script type="text/javascript">
         window.addEventListener('message', event => {
@@ -67,87 +132,14 @@
 </head>
 
 <body>
-<div id="app-root"></div>
+<div id="app-container"></div>
 <div id="loading-container">
-    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
-         style="margin: auto; background: rgba(255, 255, 255, 0); display: block;" width="256px" height="256px"
-         viewBox="0 0 100 100" preserveAspectRatio="xMidYMid">
-        <defs>
-            <filter id="loading-circle-filter" x="-100%" y="-100%" width="300%" height="300%"
-                    color-interpolation-filters="sRGB">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="2.5"></feGaussianBlur>
-                <feComponentTransfer result="cutoff">
-                    <feFuncA type="table" tableValues="0 0 0 0 0 0 1 1 1 1 1"></feFuncA>
-                </feComponentTransfer>
-            </filter>
-        </defs>
-        <g filter="url(#loading-circle-filter)">
-            <g transform="translate(50 50)">
-                <g>
-                    <circle cx="17" cy="0" r="5" fill="#e15b64">
-                        <animate attributeName="r" keyTimes="0;0.5;1"
-                                 values="3.5999999999999996;8.399999999999999;3.5999999999999996"
-                                 dur="6.666666666666666s" repeatCount="indefinite"
-                                 begin="-0.15000000000000002s"></animate>
-                    </circle>
-                    <animateTransform attributeName="transform" type="rotate" keyTimes="0;1" values="0;360"
-                                      dur="6.666666666666666s" repeatCount="indefinite" begin="0s"></animateTransform>
-                </g>
-            </g>
-            <g transform="translate(50 50)">
-                <g>
-                    <circle cx="17" cy="0" r="5" fill="#f47e60">
-                        <animate attributeName="r" keyTimes="0;0.5;1"
-                                 values="3.5999999999999996;8.399999999999999;3.5999999999999996"
-                                 dur="3.333333333333333s" repeatCount="indefinite"
-                                 begin="-0.12000000000000002s"></animate>
-                    </circle>
-                    <animateTransform attributeName="transform" type="rotate" keyTimes="0;1" values="0;360"
-                                      dur="3.333333333333333s" repeatCount="indefinite"
-                                      begin="-0.030000000000000006s"></animateTransform>
-                </g>
-            </g>
-            <g transform="translate(50 50)">
-                <g>
-                    <circle cx="17" cy="0" r="5" fill="#f8b26a">
-                        <animate attributeName="r" keyTimes="0;0.5;1"
-                                 values="3.5999999999999996;8.399999999999999;3.5999999999999996"
-                                 dur="2.222222222222222s" repeatCount="indefinite"
-                                 begin="-0.09000000000000001s"></animate>
-                    </circle>
-                    <animateTransform attributeName="transform" type="rotate" keyTimes="0;1" values="0;360"
-                                      dur="2.222222222222222s" repeatCount="indefinite"
-                                      begin="-0.06000000000000001s"></animateTransform>
-                </g>
-            </g>
-            <g transform="translate(50 50)">
-                <g>
-                    <circle cx="17" cy="0" r="5" fill="#abbd81">
-                        <animate attributeName="r" keyTimes="0;0.5;1"
-                                 values="3.5999999999999996;8.399999999999999;3.5999999999999996"
-                                 dur="1.6666666666666665s" repeatCount="indefinite"
-                                 begin="-0.06000000000000001s"></animate>
-                    </circle>
-                    <animateTransform attributeName="transform" type="rotate" keyTimes="0;1" values="0;360"
-                                      dur="1.6666666666666665s" repeatCount="indefinite"
-                                      begin="-0.09000000000000001s"></animateTransform>
-                </g>
-            </g>
-            <g transform="translate(50 50)">
-                <g>
-                    <circle cx="17" cy="0" r="5" fill="#65a56e">
-                        <animate attributeName="r" keyTimes="0;0.5;1"
-                                 values="3.5999999999999996;8.399999999999999;3.5999999999999996"
-                                 dur="1.333333333333333s" repeatCount="indefinite"
-                                 begin="-0.030000000000000006s"></animate>
-                    </circle>
-                    <animateTransform attributeName="transform" type="rotate" keyTimes="0;1" values="0;360"
-                                      dur="1.333333333333333s" repeatCount="indefinite"
-                                      begin="-0.12000000000000002s"></animateTransform>
-                </g>
-            </g>
-        </g>
-    </svg>
+    <div class="lds-ellipsis">
+        <div></div>
+        <div></div>
+        <div></div>
+        <div></div>
+    </div>
 </div>
 </body>
 

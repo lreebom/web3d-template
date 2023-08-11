@@ -8,7 +8,7 @@ module.exports = {
         }
     },
     resolve: {
-        extensions: ['.js', '.ts', '.jsx', '.tsx', 'jpg', 'png', 'glb'],
+        extensions: ['.js', '.ts', '.jsx', '.tsx', '.jpg', '.png', '.exr', '.glb', '.vert', '.frag'],
         alias: {}
     },
     module: {
@@ -28,6 +28,11 @@ module.exports = {
                 exclude: /node_modules/,
                 use: [MiniCssExtractPlugin.loader, 'css-loader', "postcss-loader"]
             },
+            {
+                test: /\.(glsl|vert|frag)$/i,
+                exclude: /node_modules/,
+                type: 'asset/source'
+            }
         ]
     }
 };
